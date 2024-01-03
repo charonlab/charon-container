@@ -20,11 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Abyss\Tests\Unit\Fixture;
+namespace Abyss\Test\Unit\Fixture;
 
-class ClassBCircularDependency
+interface ContainerInterface
 {
-    public function __construct(ClassACircularDependency $class)
-    {
-    }
 }

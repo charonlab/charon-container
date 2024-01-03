@@ -20,8 +20,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Abyss\Tests\Unit\Fixture;
+namespace Abyss\Test\Unit\Fixture;
 
-interface ContainerInterface
+class SampleClass
 {
+    public function __construct(public int $foo)
+    {
+    }
 }

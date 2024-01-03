@@ -1,16 +1,51 @@
 <?xml version="1.0"?>
 <ruleset
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+    name="Abyss coding standard"
 >
+    <description>Abyss coding standard</description>
+
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg name="cache" value="build/cache/phpcs.cache"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
     <file>src</file>
     <file>tests</file>
 
-    <arg name="basepath" value="."/>
-    <arg name="extensions" value="php"/>
-    <arg name="parallel" value="80"/>
-    <arg name="colors"/>
-    <arg value="ps"/>
-
     <rule ref="PSR12"/>
+
+    <rule ref="Generic.Commenting.Fixme"/>
+    <rule ref="Generic.Commenting.Todo"/>
+
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+    <rule ref="Generic.PHP.BacktickOperator"/>
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="empty" value="null"/>
+                <element key="doubleval" value="floatval"/>
+                <element key="is_double" value="is_float"/>
+                <element key="is_integer" value="is_int"/>
+                <element key="is_long" value="is_int"/>
+                <element key="is_real" value="is_float"/>
+                <element key="d" value="null"/>
+                <element key="dd" value="null"/>
+                <element key="dump" value="null"/>
+                <element key="dump_d" value="null"/>
+                <element key="var_dump" value="null"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
+        <type>error</type>
+    </rule>
+
 </ruleset>

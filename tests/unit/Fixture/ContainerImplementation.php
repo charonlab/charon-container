@@ -20,26 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Abyss\Tests\Unit;
+namespace Abyss\Test\Unit\Fixture;
 
-use Abyss\Container\Container;
-use Abyss\Container\Exception\CircularDependencyException;
-use Abyss\Tests\Unit\Fixture\ClassACircularDependency;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
-
-#[CoversClass(Container::class)]
-class ContainerTest extends TestCase
+class ContainerImplementation implements ContainerInterface
 {
-    public function testMakeIfCircularDependencyThrowsException(): void
-    {
-        self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessage(
-            "Circular dependency detected while trying to resolve entry " .
-            "'Abyss\Tests\Unit\Fixture\ClassACircularDependency'"
-        );
-
-        $container = new Container();
-        $container->make(ClassACircularDependency::class);
-    }
 }

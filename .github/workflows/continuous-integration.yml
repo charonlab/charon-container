@@ -53,10 +53,10 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-source --no-interaction --dev
       - name: Coding Standard
-        run: composer run lint:style
+        run: composer dev:lint:style
       - name: Static Code Analysis (PHPStan)
-        run: composer run analyze:phpstan
+        run: composer run deV:analyze:phpstan
       - name: Static Code Analysis (Psalm)
-        run: composer run analyze:psalm
+        run: composer dev:analyze:psalm
       - name: Run test suite
-        run: composer run unit:tests
+        run: composer dev:test:unit

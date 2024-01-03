@@ -20,24 +20,43 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Abyss\Tests\Unit;
+namespace Abyss\Test\Unit;
 
+use Abyss\Container\Concrete\Scalar;
 use Abyss\Container\Container;
-use Abyss\Tests\Unit\Fixture\SampleClass;
+use Abyss\Test\Unit\Fixture\ContainerImplementation;
+use Abyss\Test\Unit\Fixture\ContainerInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 #[CoversClass(Container::class)]
-class ContainerFactoryTest extends TestCase
+class ContainerBindTest extends TestCase
 {
-    public function testMakeWithGivenArguments(): void
+    public function testContainerCanBindAnyValue(): void
     {
         $container = new Container();
+        $container->bind('foo', new Scalar('foo'));
 
-        $instance1 = $container->make(SampleClass::class, ['foo' => 10]);
-        $instance2 = $container->make(SampleClass::class, ['foo' => 10]);
+        self::assertEquals('foo', $container->make('foo'));
+    }
 
-        self::assertEquals(SampleClass::class, $instance1::class);
-        self::assertSame($instance1->foo, $instance2->foo);
+    public function testPrimitiveValueToConcreteResolution(): void
+    {
+        $container = new Container();
+        $container->bind('foo', stdClass::class);
+
+        self::assertInstanceOf(stdClass::class, $container->make('foo'));
+    }
+
+    public function testBindingAnInstanceAsShared(): void
+    {
+        $container = new Container();
+        $container->singleton(ContainerInterface::class, ContainerImplementation::class);
+
+        $instance1 = $container->make(ContainerInterface::class);
+        $instance2 = $container->make(ContainerInterface::class);
+
+        self::assertSame($instance1, $instance2);
     }
 }
