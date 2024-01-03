@@ -1,7 +1,7 @@
 {
     "name": "abyss/container",
     "description": "Dependency Injection, Service Container",
-    "license": "LGPL-2.1-only",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dominik Szamburski",
