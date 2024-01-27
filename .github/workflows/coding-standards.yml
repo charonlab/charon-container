@@ -3,7 +3,7 @@ name: "Coding Standards"
 on:
   pull_request:
     branches:
-      - "*.*"
+      - "*.x"
     paths:
       - composer.*
       - phpcs.xml.dist
@@ -35,10 +35,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           coverage: none
+          tools: cs2pr
           php-version: '8.2'
 
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
-      - name: "Check coding standards"
-        run: "composer dev:lint:style -- -q --no-colors --report=checkstyle"
+      - name: Coding standards
+        run: "composer run lint-check -- -q --no-colors --report=checkstyle | cs2pr"

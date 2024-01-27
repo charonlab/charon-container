@@ -3,20 +3,21 @@ name: "Static Analysis"
 on:
   pull_request:
     branches:
-      - "*.*"
+      - "*.x"
     paths:
       - composer.*
-      - src/**
-      - phpstan*
       - psalm*
+      - src/**
+      - tests/**
+
   push:
     branches:
       - "*.x"
     paths:
       - composer.*
-      - src/**
-      - phpstan*
       - psalm*
+      - src/**
+      - tests/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -36,13 +37,8 @@ jobs:
         with:
           coverage: none
           php-version: '8.2'
-          tools: cs2pr
-
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
-      - name: Static Analysis (PHPStan)
-        run: "composer dev:analyze:phpstan -- --error-format=checkstyle | cs2pr"
-
-      - name: Static Analysis (PHPStan)
-        run: "composer dev:analyze:psalm -- --shepherd"
+      - name: Static Analysis
+        run: "composer run static-analysis"

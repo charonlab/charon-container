@@ -1,35 +1,42 @@
 {
-    "name": "abyss/container",
-    "description": "Dependency Injection, Service Container",
+    "name": "charonlab/charon-container",
+    "description": "A fast and minimal PSR-11 compatible Dependency Injection Container.",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Dominik Szamburski",
-            "email": "dominikszamburski99@gmail.com"
-        }
-    ],
+    "type": "library",
     "require": {
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "psr/container": "^2.0"
     },
-    "minimum-stability": "dev",
     "require-dev": {
-        "nulldark/devtools": "@dev"
+        "charonlab/coding-standard": "1.2.x-dev",
+        "phpunit/phpunit": "10.5.x-dev",
+        "vimeo/psalm": "6.x-dev"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Abyss\\Container\\": "src/Container/"
+            "Charon\\Container\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Abyss\\Test\\Unit\\": "tests/unit/"
+            "Charon\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "config": {
         "allow-plugins": {
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "nulldark/devtools": true
-        }
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.2.15"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint-check": "phpcs",
+        "lint-fix": "phpcbf",
+        "static-analysis": "psalm --shepherd --stats",
+        "test": "phpunit --colors=always"
     }
 }

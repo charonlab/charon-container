@@ -3,22 +3,26 @@ name: "Continuous Integration"
 on:
   pull_request:
     branches:
-      - "*.*"
+      - "*.x"
     paths:
       - .github/workflows/continuous-integration.yml
       - composer.*
-      - lib/**
-      - phpunit.xml.dist
+      - src/**
       - tests/**
+      - phpunit.xml.dist
   push:
     branches:
       - "*.x"
     paths:
       - .github/workflows/continuous-integration.yml
       - composer.*
-      - lib/**
-      - phpunit.xml.dist
+      - src/**
       - tests/**
+      - phpunit.xml.dist
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   fail-fast: true
@@ -28,35 +32,30 @@ permissions:
 
 jobs:
   build:
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: "ubuntu-latest"
     strategy:
       matrix:
         php-versions: [ '8.2', '8.3' ]
-        operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-${{ matrix.php-versions }}
+          coverage: none
+          php-version: '8.2'
+          tools: cs2pr
+
       - name: Install dependencies
-        run: composer install --prefer-source --no-interaction --dev
-      - name: Coding Standard
-        run: composer dev:lint:style
-      - name: Static Code Analysis (PHPStan)
-        run: composer run deV:analyze:phpstan
-      - name: Static Code Analysis (Psalm)
-        run: composer dev:analyze:psalm
-      - name: Run test suite
-        run: composer dev:test:unit
+        uses: ramsey/composer-install@v2
+
+      - name: Coding standards
+        run: "composer run lint-check -- -q --no-colors --report=checkstyle | cs2pr"
+
+      - name: Static Analysis
+        run: "composer run static-analysis"
+
+      - name: PHPUnit tests
+        run: "composer run test"
