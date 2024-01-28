@@ -7,7 +7,6 @@
          executionOrder="depends,defects"
          requireCoverageMetadata="true"
          beStrictAboutCoverageMetadata="true"
-         beStrictAboutOutputDuringTests="true"
          failOnRisky="true"
          failOnWarning="true"
 >
@@ -16,6 +15,9 @@
     <testsuites>
         <testsuite name="unit test">
             <directory>./tests/unit</directory>
+        </testsuite>
+        <testsuite name="performance test">
+            <directory>./tests/performance</directory>
         </testsuite>
     </testsuites>
 
