@@ -20,7 +20,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Charon\\Tests\\Unit\\": "tests/unit/"
+            "Charon\\Tests\\Unit\\": "tests/unit/",
+            "Charon\\Tests\\Performance\\": "tests/performance/"
         }
     },
     "config": {
