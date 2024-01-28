@@ -12,6 +12,7 @@
 namespace Charon\Container;
 
 use Charon\Container\Exception\NotFoundException;
+use Charon\Container\Exception\NotInvokableException;
 
 class Container implements ContainerInterface
 {
@@ -20,6 +21,9 @@ class Container implements ContainerInterface
 
     /** @var array<string, bool> $keys */
     private array $keys = [];
+
+    /** @var array<non-empty-string, callable(ContainerInterface $container): string|int|float|object> $factories */
+    private array $factories = [];
 
     /**
      * @param array<string, object|string|numeric> $services
@@ -38,6 +42,11 @@ class Container implements ContainerInterface
             throw new NotFoundException($id);
         }
 
+        if (isset($this->factories[$id]) && \is_callable($this->factories[$id])) {
+            /** @psalm-suppress MixedReturnStatement */
+            return $this->factories[$id]($this);
+        }
+
         return $this->services[$id];
     }
 
@@ -54,5 +63,17 @@ class Container implements ContainerInterface
     public function set(string $id, string|int|object|float $value): void {
         $this->keys[$id] = true;
         $this->services[$id] = $value;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function factory(string $id, object $service): void {
+        if (!\method_exists($service, '__invoke')) {
+            throw new NotInvokableException('Service definition is not callable.');
+        }
+
+        $this->keys[$id] = true;
+        $this->factories[$id] = $service;
     }
 }
