@@ -15,3 +15,7 @@ $ composer require charonlab/charon-container
 ## Support
 
 - [Issues](https://github.com/charonlab/charon-container/issues/)
+
+## License
+
+The charon-container is open-sourced software licensed under the [MIT](LICENSE.md)
