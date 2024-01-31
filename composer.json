@@ -12,6 +12,9 @@
         "phpunit/phpunit": "10.5.x-dev",
         "vimeo/psalm": "6.x-dev"
     },
+    "provide": {
+        "psr/container-implementation": "2.0.2"
+    },
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
@@ -20,8 +23,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Charon\\Tests\\Unit\\": "tests/unit/",
-            "Charon\\Tests\\Performance\\": "tests/performance/"
+            "Charon\\Tests\\Performance\\": "tests/performance/",
+            "Charon\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "config": {
