@@ -76,4 +76,11 @@ class Container implements ContainerInterface
         $this->keys[$id] = true;
         $this->factories[$id] = $service;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function register(ServiceProviderInterface $serviceProvider): void {
+        $serviceProvider->register($this);
+    }
 }
