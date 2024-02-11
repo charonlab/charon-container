@@ -53,4 +53,14 @@ interface ContainerInterface extends \Psr\Container\ContainerInterface
      * @throws \Charon\Container\Exception\NotInvokableException
      */
     public function factory(string $id, object $service): void;
+
+    /**
+     * Registers a service provider.
+     *
+     * @param \Charon\Container\ServiceProviderInterface $serviceProvider
+     *  The service provider to be registered.
+     *
+     * @return void
+     */
+    public function register(ServiceProviderInterface $serviceProvider): void;
 }
