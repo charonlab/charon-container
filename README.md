@@ -1,16 +1,18 @@
-# charonlab/charon-container
+## charonlab/charon-container
 
-[![Build Status](https://github.com/charonlab/charon-container/workflows/Continuous%20Integration/badge.svg)](https://github.com/charonlab/charon-container/actions?query=workflow%3A"Continuous+Integration")
-
-A fast and minimal PSR-11 compatible Dependency Injection Container.
+A fast and minimal dependency injection container.
 
 ## Installation
 
-Run the following to install this library:
+Use the composer to install:
 
 ```bash
 $ composer require charonlab/charon-container
 ```
+
+## Documentation
+
+Documentation is at [docs](docs/index.md)
 
 ## Support
 
