@@ -14,7 +14,7 @@ namespace Charon\Container;
 use Charon\Container\Exception\NotFoundException;
 use Charon\Container\Exception\NotInvokableException;
 
-class Container implements ContainerInterface
+class Container implements ContainerInterface, FactoryInterface
 {
     /** @var array<string, object|string|numeric> $services  */
     private array $services = [];
