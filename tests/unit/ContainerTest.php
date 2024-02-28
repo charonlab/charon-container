@@ -12,6 +12,7 @@
 namespace Charon\Tests\Unit;
 
 use Charon\Container\Container;
+use Charon\Container\ContainerInterface;
 use Charon\Container\Exception\NotFoundException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
@@ -25,9 +26,7 @@ class ContainerTest extends TestCase
         $container = new Container();
         $container->set(\stdClass::class, new \stdClass());
 
-        self::assertTrue(
-            $container->has(\stdClass::class)
-        );
+        self::assertTrue($container->has(\stdClass::class));
     }
 
     public function testSharedService(): void {
@@ -36,10 +35,7 @@ class ContainerTest extends TestCase
         $container = new Container();
         $container->set(\stdClass::class, $class);
 
-        self::assertSame(
-            $class,
-            $container->get(\stdClass::class)
-        );
+        self::assertSame($class, $container->get(\stdClass::class));
     }
 
     public function testGetThrowsExceptionIfServiceNotFound(): void {
@@ -47,5 +43,25 @@ class ContainerTest extends TestCase
 
         $container = new Container();
         $container->get(\stdClass::class);
+    }
+
+    public function testServicesShouldBeDifferent(): void {
+        $container = new Container();
+        $container->set(\stdClass::class, fn () => new \stdClass());
+
+        $firstService = $container->get(\stdClass::class);
+        self::assertInstanceOf(\stdClass::class, $firstService);
+
+        $secondService = $container->get(\stdClass::class);
+        self::assertInstanceOf(\stdClass::class, $secondService);
+
+        self::assertNotSame($firstService, $secondService);
+    }
+
+    public function testShouldPassContainerAsAParameter(): void {
+        $container = new Container();
+        $container->set(\stdClass::class, fn(ContainerInterface $container) => $container);
+
+        self::assertSame($container, $container->get(\stdClass::class));
     }
 }

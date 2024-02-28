@@ -26,7 +26,7 @@ class Container implements ContainerInterface
     private array $factories = [];
 
     /**
-     * @param array<string, object|string|numeric> $services
+     * @param array<non-empty-string, object|string|numeric> $services
      */
     public function __construct(array $services = []) {
         foreach ($services as $id => $service) {
@@ -62,19 +62,13 @@ class Container implements ContainerInterface
      */
     public function set(string $id, string|int|object|float $value): void {
         $this->keys[$id] = true;
-        $this->services[$id] = $value;
-    }
 
-    /**
-     * @inheritDoc
-     */
-    public function factory(string $id, object $service): void {
-        if (!\method_exists($service, '__invoke')) {
-            throw new NotInvokableException('Service definition is not callable.');
+        if (\is_callable($value)) {
+            $this->factories[$id] = $value;
+            return;
         }
 
-        $this->keys[$id] = true;
-        $this->factories[$id] = $service;
+        $this->services[$id] = $value;
     }
 
     /**

@@ -31,7 +31,7 @@ interface ContainerInterface extends \Psr\Container\ContainerInterface
     /**
      * Sets a parameter or service.
      *
-     * @param string $id
+     * @param non-empty-string $id
      *  The unique identifier for the entry.
      * @param string|int|float|object $value
      *  Value the define a service or a parameter.
@@ -39,20 +39,6 @@ interface ContainerInterface extends \Psr\Container\ContainerInterface
      * @return void
      */
     public function set(string $id, string|int|float|object $value): void;
-
-    /**
-     * Sets a given closure as a factory service.
-     *
-     * @param non-empty-string $id
-     *  The unique identifier for the entry.
-     * @param object $service
-     *  The service definition to be used as a factory.
-     *
-     * @return void
-     *
-     * @throws \Charon\Container\Exception\NotInvokableException
-     */
-    public function factory(string $id, object $service): void;
 
     /**
      * Registers a service provider.
