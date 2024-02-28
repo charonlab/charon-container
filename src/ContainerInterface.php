@@ -31,7 +31,7 @@ interface ContainerInterface extends \Psr\Container\ContainerInterface
     /**
      * Sets a parameter or service.
      *
-     * @param string $id
+     * @param non-empty-string $id
      *  The unique identifier for the entry.
      * @param string|int|float|object $value
      *  Value the define a service or a parameter.

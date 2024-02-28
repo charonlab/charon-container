@@ -14,16 +14,18 @@ namespace Charon\Container;
 interface FactoryInterface
 {
     /**
-     * Sets a given closure as a factory service.
+     * Initializes a new instance of requested class using binding and set of parameters.
      *
-     * @param non-empty-string $id
+     * @param non-empty-string|class-string<T> $abstract
      *  The unique identifier for the entry.
-     * @param object $service
-     *  The service definition to be used as a factory.
+     * @param array $parameters
+     *  Parameters to construct a new class
      *
-     * @return void
+     * @return ($abstract is class-string ? T : object|string|int|float)
      *
      * @throws \Charon\Container\Exception\NotInvokableException
+     *
+     * @template T
      */
-    public function factory(string $id, object $service): void;
+    public function make(string $abstract, array $parameters = []): string|int|float|object;
 }
