@@ -28,8 +28,8 @@ class ContainerPerformanceTest extends TestCase
     public function setUp(): void {
         $this->container = new Container();
         $this->container->set(\stdClass::class, new \stdClass());
-        $this->container->factory('factory', fn (ContainerInterface $container) => $container);
-        $this->container->factory('fixture', function (ContainerInterface $container): Service {
+        $this->container->set('factory', fn (ContainerInterface $container) => $container);
+        $this->container->set('fixture', function (ContainerInterface $container): Service {
             return new Service(
                 $container->get(\stdClass::class)
             );

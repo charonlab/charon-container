@@ -27,7 +27,7 @@ class MemoryUsageTest extends TestCase
     public function testMemoryUsage(): void {
         $container = new Container();
         $container->set(\stdClass::class, new \stdClass());
-        $container->factory('factory', function (ContainerInterface $container) {
+        $container->set('factory', function (ContainerInterface $container) {
             return new Service(
                 $container->get(\stdClass::class)
             );
