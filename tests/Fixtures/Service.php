@@ -9,7 +9,7 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Performance\Fixture;
+namespace Charon\Tests\Container\Fixtures;
 
 class Service
 {

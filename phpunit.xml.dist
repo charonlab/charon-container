@@ -7,17 +7,17 @@
          executionOrder="depends,defects"
          requireCoverageMetadata="true"
          beStrictAboutCoverageMetadata="true"
-         failOnRisky="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         failOnNotice="true"
          failOnWarning="true"
+         failOnRisky="true"
 >
     <coverage/>
 
     <testsuites>
-        <testsuite name="unit test">
-            <directory>./tests/unit</directory>
-        </testsuite>
-        <testsuite name="performance test">
-            <directory>./tests/performance</directory>
+        <testsuite name="Charon Container Test Suite">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
@@ -25,4 +25,7 @@
             <directory>src</directory>
         </include>
     </source>
+    <php>
+        <ini name="error_reporting" value="24575"/>
+    </php>
 </phpunit>
