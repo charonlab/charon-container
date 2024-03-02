@@ -11,8 +11,11 @@
 
 namespace Charon\Container\Exception;
 
-use Exception;
+use RuntimeException;
 
-class NotInvokableException extends Exception
+class CircularDependencyException extends RuntimeException
 {
+    public function __construct(string $abstract) {
+        parent::__construct("Circular dependency detected while trying to resolve entry '{$abstract}'");
+    }
 }

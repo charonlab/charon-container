@@ -9,10 +9,10 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Container\Exception;
+namespace Charon\Tests\Container\Fixtures;
 
-use Exception;
-
-class NotInvokableException extends Exception
+class ClassACircularDependencies
 {
+    public function __construct(public ClassBCircularDependencies $class) {
+    }
 }

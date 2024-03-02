@@ -10,9 +10,11 @@
        addParamDefaultToDocblockType="true"
        findUnusedBaselineEntry="true"
        findUnusedCode="false"
+       errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
         <directory name="src"/>
+        <directory name="tests"/>
         <ignoreFiles>
             <directory name=".github"/>
             <directory name="vendor"/>

@@ -9,11 +9,11 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Performance;
+namespace Charon\Tests\Container\Benchmark;
 
 use Charon\Container\Container;
 use Charon\Container\ContainerInterface;
-use Charon\Tests\Performance\Fixture\Service;
+use Charon\Tests\Container\Fixtures\Service;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Group;

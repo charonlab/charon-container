@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="dev-master@b940c7e92d4616837ab1f09244ba94e77c5bb100">
+  <file src="src/Container.php">
+    <MixedReturnStatement>
+      <code><![CDATA[$concrete($this)]]></code>
+      <code><![CDATA[$parameter->getDefaultValue()]]></code>
+    </MixedReturnStatement>
+  </file>
+</files>
