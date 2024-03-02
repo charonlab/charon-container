@@ -11,21 +11,24 @@
 
 namespace Charon\Container;
 
+use Closure;
+
 interface FactoryInterface
 {
     /**
      * Initializes a new instance of requested class using binding and set of parameters.
      *
-     * @param non-empty-string|class-string<T> $abstract
+     * @param \Closure|class-string<T>|string $abstract
      *  The unique identifier for the entry.
-     * @param array $parameters
-     *  Parameters to construct a new class
+     * @param array<string, array|object|scalar|null> $parameters
+     *  Parameters to construct a new class.
      *
-     * @return ($abstract is class-string ? T : object|string|int|float)
+     * @return ($abstract is class-string ? T : array|object|scalar|null)
      *
-     * @throws \Charon\Container\Exception\NotInvokableException
+     * @throws \Charon\Container\Exception\CircularDependencyException
+     * @throws \Charon\Container\Exception\NotFoundException
      *
-     * @template T
+     * @template T of object
      */
-    public function make(string $abstract, array $parameters = []): string|int|float|object;
+    public function make(Closure|string $abstract, array $parameters = []): array|object|bool|float|int|string|null;
 }

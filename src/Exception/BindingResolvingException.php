@@ -11,8 +11,8 @@
 
 namespace Charon\Container\Exception;
 
-use Exception;
+use RuntimeException;
 
-class NotInvokableException extends Exception
+class BindingResolvingException extends RuntimeException
 {
 }
