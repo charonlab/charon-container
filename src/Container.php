@@ -151,7 +151,7 @@ class Container implements ContainerInterface
         }
 
         try {
-            if (!class_exists($concrete) || !interface_exists($concrete)) {
+            if (!(class_exists($concrete) || interface_exists($concrete))) {
                 throw new ReflectionException("Class \"$concrete\" does not exist.");
             }
 
