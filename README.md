@@ -1,8 +1,13 @@
-## charonlab/charon-container
+# charonlab/charon-container
 
-This project is an open-source implementation of the PHP-FIG PSR-11 standard, which
-defines a common interface for dependency injection containers.
-PSR-11 aims to provide a simple and efficient Inversion of Control (IoC) container for PHP applications.
+[![PHP Version Require](https://poser.pugx.org/charonlab/charon-container/require/php)](https://packagist.org/packages/charonlab/charon-container)
+[![Latest Stable Version](https://poser.pugx.org/charonlab/charon-container/v/stable)](https://packagist.org/packages/charonlab/charon-container)
+[![Continuous Integration](https://github.com/charonlab/charon-container/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/charonlab/charon-container/actions)
+[![Total Downloads](https://poser.pugx.org/charonlab/charon-container/downloads)](https://packagist.org/charonlab/charon-container)
+[![License](https://poser.pugx.org/charonlab/charon-container/license.svg)](https://packagist.org/packages/charonlab/charon-container)
+
+**charon-container** is an open-source implementation of the PHP-FIG PSR-11 standard, which
+defines a common interface for dependency injection containers. Aims to provide a simple and efficient Inversion of Control (IoC) container for PHP applications.
 
 ## Features
 - **PSR-11 Compliance**: Adheres to the PSR-11 standard, ensuring compatibility with other components and frameworks that rely on this specification.
@@ -15,7 +20,7 @@ PSR-11 aims to provide a simple and efficient Inversion of Control (IoC) contain
 Use the composer to install:
 
 ```bash
-$ composer require charonlab/charon-container
+composer require charonlab/charon-container
 ```
 
 ## Documentation
