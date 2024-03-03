@@ -1,6 +1,6 @@
 {
     "name": "charonlab/charon-container",
-    "description": "A fast and minimal PSR-11 compatible Dependency Injection Container.",
+    "description": "Lightweight PHP implementation of the PSR-11 standard, offering a versatile Inversion of Control (IoC) container.",
     "license": "MIT",
     "type": "library",
     "require": {
