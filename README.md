@@ -33,4 +33,4 @@ Documentation is at [docs](docs/index.md)
 
 ## License
 
-The charon-container is open-sourced software licensed under the [MIT](LICENSE.md)
+The MIT License (MIT). Please see [License](LICENSE.md) for more information.
