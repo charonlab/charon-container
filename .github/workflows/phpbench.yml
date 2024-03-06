@@ -1,0 +1,42 @@
+name: "Performance benchmark"
+
+on:
+  pull_request:
+    branches:
+      - "*.x"
+    paths:
+      - composer.*
+      - phpbench.json
+      - src/**
+      - tests/**
+  push:
+    branches:
+      - "*.x"
+    paths:
+      - composer.*
+      - phpbench.json
+      - src/**
+      - tests/**
+
+jobs:
+  phpbench:
+    name: "PHPBench"
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "8.3"
+
+    steps:
+      - uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+      - uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          coverage: "pcov"
+          ini-values: "zend.assertions=1, apc.enable_cli=1"
+      - uses: "ramsey/composer-install@v3"
+      - name: "Run PHPBench"
+        run: "composer run phpbench"
