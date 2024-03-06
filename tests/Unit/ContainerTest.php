@@ -9,7 +9,7 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Container;
+namespace Charon\Tests\Container\Unit;
 
 use Charon\Container\Container;
 use Charon\Container\Exception\NotFoundException;

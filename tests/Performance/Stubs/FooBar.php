@@ -9,10 +9,13 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Container\Fixtures;
+namespace Charon\Tests\Container\Performance\Stubs;
 
-class ClassBCircularDependencies
+class FooBar
 {
-    public function __construct(public ClassACircularDependencies $class) {
+    public function __construct(
+        public Foo $foo,
+        public Bar $bar
+    ) {
     }
 }

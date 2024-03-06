@@ -9,14 +9,14 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Container;
+namespace Charon\Tests\Container\Unit;
 
 use Charon\Container\BindableContainerInterface;
 use Charon\Container\Container;
 use Charon\Container\Exception\CircularDependencyException;
-use Charon\Tests\Container\Fixtures\ClassACircularDependencies;
-use Charon\Tests\Container\Fixtures\SampleClass;
-use Charon\Tests\Container\Fixtures\SampleInterface;
+use Charon\Tests\Container\Unit\Stubs\ClassACircularDependencies;
+use Charon\Tests\Container\Unit\Stubs\SampleClass;
+use Charon\Tests\Container\Unit\Stubs\SampleInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

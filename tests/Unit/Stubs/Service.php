@@ -9,8 +9,14 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Container\Fixtures;
+namespace Charon\Tests\Container\Unit\Stubs;
 
-interface SampleInterface
+class Service
 {
+    public function __construct(private readonly \stdClass $stdClass) {
+    }
+
+    public function value(): \stdClass {
+        return $this->stdClass;
+    }
 }
