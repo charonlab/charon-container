@@ -16,7 +16,6 @@ use Charon\Container\ContainerInterface;
 
 class AbstractBenchCase
 {
-
     /** @psalm-suppress PropertyNotSetInConstructor */
     protected ContainerInterface $container;
 
