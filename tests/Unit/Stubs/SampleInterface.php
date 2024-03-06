@@ -9,10 +9,8 @@
  * of the MIT license. See the LICENSE.md file for details.
  */
 
-namespace Charon\Tests\Container\Fixtures;
+namespace Charon\Tests\Container\Unit\Stubs;
 
-class SampleClass implements SampleInterface
+interface SampleInterface
 {
-    public function __construct(public int $foo) {
-    }
 }

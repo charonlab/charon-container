@@ -13,5 +13,4 @@ namespace Charon\Tests\Container\Performance\Stubs;
 
 class Foo
 {
-
 }
