@@ -41,6 +41,7 @@
         "lint-check": "phpcs",
         "lint-fix": "phpcbf",
         "static-analysis": "psalm --shepherd --stats",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "phpbench": "phpbench run --report=compressed"
     }
 }
